@@ -1,23 +1,14 @@
 version: "3"
 
-networks:
-  gitea:
-    external: false
-
 services:
   server:
     image: gogs/gogs:0.12.3
-    container_name: gitea
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
+    container_name: gogs
     restart: always
-    networks:
-      - gitea
     volumes:
-      - ./gitea:/data
+      - ./gogs:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "3000:3000"
-      - "222:22"
+      - "10080:3000"
+      - "10022:22"
